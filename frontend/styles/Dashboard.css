@@ -1,0 +1,50 @@
+.dashboard {
+  padding: 2rem;
+}
+
+.dashboard-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.dashboard-no-files {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.dashboard-file-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.dashboard-file-item {
+  margin-bottom: 1rem;
+}
+
+.file-item-button {
+  background: #0070f3;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.file-item-button:hover {
+  background: #005bb5;
+}
+
+.file-interpretation {
+  margin-top: 2rem;
+}
+
+.card-content {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 4px;
+}
+.h3file{
+  font-size: 45;
+  font-weight: bold;
+  color: #02096f;
+}
