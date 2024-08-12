@@ -9,10 +9,10 @@ export const POST = async (request) => {
     await connect();
 
     // Parse JSON data from the request
-    const { email, password } = await request.json();
+    const { userName ,email, password } = await request.json();
 
     // Check if email and password are provided
-    if (!email || !password) {
+    if (!userName || !email || !password) {
       return new NextResponse("Email and password are required", { status: 400 });
     }
 
@@ -27,6 +27,7 @@ export const POST = async (request) => {
 
     // Create and save the new user
     const newUser = new User({
+      userName,
       email,
       password: hashedPassword,
     });

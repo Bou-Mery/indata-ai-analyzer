@@ -1,15 +1,37 @@
 .dashboard {
   padding: 2rem;
+  font-family: 'Inter', sans-serif;
 }
 
 .dashboard-title {
   font-size: 2rem;
   margin-bottom: 1rem;
+  color: #333;
 }
 
 .dashboard-no-files {
   font-size: 1.2rem;
   color: #666;
+}
+
+.filter-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.filter-input {
+  border: 1px solid #ddd;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  margin-left: 0.5rem;
+  flex: 1;
+  font-size: 1rem;
+}
+
+.search-icon {
+  color: #0070f3;
+  font-size: 1.2rem;
 }
 
 .dashboard-file-list {
@@ -19,15 +41,20 @@
 
 .dashboard-file-item {
   margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .file-item-button {
   background: #0070f3;
   color: white;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem; /* Adjust padding */
+  font-size: 0.9rem; /* Adjust font size */
   cursor: pointer;
   border-radius: 4px;
+  transition: background-color 0.3s ease;
 }
 
 .file-item-button:hover {
@@ -35,16 +62,47 @@
 }
 
 .file-interpretation {
-  margin-top: 2rem;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+  background: #f9f9f9;
 }
 
 .card-content {
   border: 1px solid #ddd;
   padding: 1rem;
   border-radius: 4px;
+  background: #fff;
 }
-.h3file{
-  font-size: 45;
+
+.h3file {
+  font-size: 1.25rem;
   font-weight: bold;
   color: #02096f;
+  margin-bottom: 0.5rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.page-button {
+  background: #0070f3;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  margin: 0 0.25rem;
+}
+
+.page-button:hover {
+  background: #005bb5;
+}
+
+.page-button.active {
+  background: #005bb5;
 }

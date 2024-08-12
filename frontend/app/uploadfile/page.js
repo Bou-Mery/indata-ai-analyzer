@@ -10,7 +10,6 @@ import { useSession } from 'next-auth/react';
 const FileUpload = () => {
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState("");
-  const [fileContent, setFileContent] = useState(null);
   const [interpretation, setInterpretation] = useState(null);
   const [visualization, setVisualization] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -51,9 +50,8 @@ const FileUpload = () => {
         }
       });
 
-      const { file_name, file_content, interpretation, visualization } = response.data;
+      const { file_name, interpretation, visualization } = response.data;
       setFileName(file_name);
-      setFileContent(file_content);
       setInterpretation(interpretation);
       setVisualization(visualization);
 
@@ -126,7 +124,7 @@ const FileUpload = () => {
         </div>
         <br/>
         <br/>
-        {fileContent && <Result interpretation={interpretation} fileName={fileName} />}
+        {interpretation && <Result interpretation={interpretation} fileName={fileName} />}
         {visualization && (
           <div className="visualization">
             <iframe

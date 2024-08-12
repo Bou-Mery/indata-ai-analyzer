@@ -1,7 +1,8 @@
-Name,Age,Gender,City
-John Doe,35,Male,New York
-Jane Smith,28,Female,Los Angeles
-Michael Johnson,42,Male,Chicago
-Emily Davis,31,Female,Houston
-David Lee,25,Male,Seattle
-Sarah Wilson,39,Female,Miami
+January 2020 Sales,Unnamed: 1,Unnamed: 2,Unnamed: 3,Unnamed: 4,Unnamed: 5
+Global Sales Report,,,,,
+,,,,,
+Location,Oranges,Apples,Bananas,Blueberries,Total
+Toronto,7651,4422,8580,3679,24332
+Los Angeles,273,2998,9890,7293,20454
+Atlanta,3758,6752,4599,4149,19258
+New York,4019,8796,8486,9188,30489

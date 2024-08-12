@@ -1,5 +1,7 @@
+'use client';
 import Footer from '@components/Footer'
 import '@styles/globals.css'
+import Link  from 'next/link'
 
 
 function Home() {
@@ -18,7 +20,10 @@ function Home() {
           grâce à notre plateforme d'intelligence artificielle.</span>
       </h1>
       <p className='desc text-center'>INDATA transforme vos données brutes en insights exploitables</p>
-
+      <br/><br/>
+      <Link href="/uploadfile" className='black_btn'>
+           Try Now
+      </Link>
     <Footer/>
     </section>
   )

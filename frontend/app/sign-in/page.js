@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Image from 'next/image';
+
 
 const Login = () => {
   const router = useRouter();
@@ -62,6 +64,9 @@ const Login = () => {
     sessionStatus !== "authenticated" && (
       <div className="flex min-h-screen flex-col items-center justify-between p-24">
         <div className="bg-[#d8f0ff] p-8 rounded shadow-md w-96">
+        <div className="flex items-center justify-center mb-8">
+          <Image src='/images/indata.png' alt="indata" className="image" width={100} height={100} />
+        </div>
           <h1 className="text-4xl text-center font-semibold mb-8">Login</h1>
           <form onSubmit={handleSubmit}>
             <input

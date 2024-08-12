@@ -9,16 +9,28 @@ export default function Page() {
   const [error, setError] = useState("");
   const router = useRouter();
 
+  const usernameSchema = z.string()
+  .min(3, "Username must be at least 3 characters long")
+  .max(20, "Username must be no longer than 20 characters")
+  .regex(/^[a-zA-Z0-9_]+$/, "Username must contain only letters, numbers, and underscores");
+
   const emailSchema = z.string().email({ message: "Email is invalid" });
   const passwordSchema = z.string().min(8, { message: "Password must be at least 8 characters" });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const email = e.target[0].value;
-    const password = e.target[1].value;
+    const userName = e.target[0].value;
+    const email = e.target[1].value;
+    const password = e.target[2].value;
 
+    const userNameValidation = usernameSchema.safeParse(userName)
     const emailValidation = emailSchema.safeParse(email);
     const passwordValidation = passwordSchema.safeParse(password);
+
+    if(!userNameValidation){
+      setError(emailValidation.error.errors[0].message)
+      return ;
+    }
 
     if (!emailValidation.success) {
       setError(emailValidation.error.errors[0].message);
@@ -37,6 +49,7 @@ export default function Page() {
           "Content-Type": "application/json" 
         },
         body: JSON.stringify({
+          userName,
           email,
           password
         })
@@ -68,6 +81,13 @@ export default function Page() {
         <h1 className="text-4xl text-center font-semibold mb-8">Register</h1>
 
         <form onSubmit={handleSubmit}>
+        <input
+            type="text"
+            className="w-full border border-gray-300 text-primary rounded px-3 py-2 mb-4 focus:outline-none focus:border-blue-400 focus:text-black"
+            placeholder="User Name"
+            required
+          />
+         
           <input
             type="text"
             className="w-full border border-gray-300 text-primary rounded px-3 py-2 mb-4 focus:outline-none focus:border-blue-400 focus:text-black"

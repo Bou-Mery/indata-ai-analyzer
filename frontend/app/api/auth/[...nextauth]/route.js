@@ -1,5 +1,4 @@
 import NextAuth from "next-auth";
-import { Account, User as AuthUser } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
@@ -20,13 +19,18 @@ export const authOptions = {
         await connect();
         try {
           const user = await User.findOne({ email: credentials.email });
+        
+
           if (user) {
             const isPasswordCorrect = await bcrypt.compare(
               credentials.password,
               user.password
             );
             if (isPasswordCorrect) {
-              return user;
+              return {
+                email: user.email,
+                userName: user.userName,
+              };
             }
           }
         } catch (err) {
@@ -41,7 +45,7 @@ export const authOptions = {
     // ...add more providers here
   ],
   pages: {
-    signIn: '/sign-in',  // Utilisez votre page de connexion personnalisée
+    signIn: '/sign-in',  // Utilisez une page de connexion personnalisée
   },
   callbacks: {
     async signIn({ user, account }) {
@@ -55,6 +59,7 @@ export const authOptions = {
           if (!existingUser) {
             const newUser = new User({
               email: user.email,
+              userName: user.name || user.email.split('@')[0], 
             });
 
             await newUser.save();

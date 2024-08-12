@@ -108,7 +108,7 @@ def upload_file():
                 with open(lock_file, 'w') as f:
                     f.write('Streamlit is running')
                 subprocess.Popen(["streamlit", "run", "visualization.py", "--server.port=8501"])
-            return jsonify({"file_name":file.filename,"file_content": data, "interpretation": interpretation, "visualization": "/visualize"})
+            return jsonify({"file_name":file.filename, "interpretation": interpretation, "visualization": "/visualize"})
         except Exception as e:
             return jsonify({"error": f"Erreur lors du traitement du fichier : {str(e)}"}), 500
 

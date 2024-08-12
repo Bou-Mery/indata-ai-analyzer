@@ -1,8 +1,28 @@
-import React from 'react'
+"use client" ;
+
+import React, { useState } from 'react'
+import { useSession } from 'next-auth/react';
+
 
 function Profile() {
+
+  const { data : session } =useSession();
+
+
+
   return (
-    <div>Profile</div>
+    <div>
+      { session ? (
+      <h1>
+      Hello {session.user.userName} , {session.user.email}  
+    </h1>
+    
+  ): (
+      <h1> not found</h1>
+    )
+      }
+      
+    </div>
   )
 }
 

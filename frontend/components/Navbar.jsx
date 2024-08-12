@@ -7,15 +7,25 @@ import { useRouter } from 'next/navigation';
 import { signOut, useSession } from 'next-auth/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import ThemeSwitch from './ThemeSwitch';
 
 function Navbar() {
   const { data: session } = useSession();
   const [toggleDropdown, setToggleDropdown] = useState(false);
+  const [showLabel, setShowLabel] = useState(false);
   const router = useRouter();
 
   const handleSignOut = async () => {
     await signOut({ redirect: false });
     router.push('/sign-in');
+  };
+
+  const handleMouseOver = () => {
+    setShowLabel(true);
+  };
+
+  const handleMouseOut = () => {
+    setShowLabel(false);
   };
 
   return (
@@ -26,13 +36,23 @@ function Navbar() {
           width={80}
           height={80}
           className='object-contain'
+          alt="InData"
         />
         <p className='logo_text'>INDATA</p>
+      </Link>
+      <Link href='https://www.ocpgroup.ma/' target="_blank"  className='flex gap-2 flex-center'>
+        <Image
+          src="/images/ocplogo.jpg"
+          width={100}
+          height={100}
+          className='object-contain'
+          alt="OCP"
+        />
       </Link>
 
       {/* Desktop navigation */}
       <div className='sm:flex hidden'>
-        <div className="flex gap-3 md:gap-5">
+        <div className="flex gap-3 md:gap-5 items-center">
           <Link href="/uploadfile" className='black_btn'>
             Upload File
           </Link>
@@ -44,15 +64,37 @@ function Navbar() {
               <button type='button' onClick={handleSignOut} className='outline_btn'>
                 Sign Out
               </button>
-              <Link href="/profile" className='flex items-center'>
+              <div style={{ position: 'relative', display: 'inline-block' }}>
                 <Image
                   src="/images/profile.jpg"
                   width={40}
                   height={40}
-                  className='rounded-full'
+                  onMouseOver={handleMouseOver}
+                  onMouseOut={handleMouseOut}
+                  className='rounded-full cursor-pointer'
                   alt="Profile"
                 />
-              </Link>
+                {showLabel && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: '100%',
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      backgroundColor: 'rgb(0, 141, 227)',
+                      color: 'white',
+                      padding: '5px',
+                      borderRadius: '5px',
+                      marginTop: '5px',
+                      whiteSpace: 'nowrap',
+                      fontSize: '12px',
+                      fontWeight :'bold',
+                    }}
+                  >
+                    {session.user.email}
+                  </div>
+                )}
+              </div>
             </>
           ) : (
             <>
@@ -64,6 +106,7 @@ function Navbar() {
               </Link>
             </>
           )}
+          <ThemeSwitch />
         </div>
       </div>
 
@@ -92,21 +135,9 @@ function Navbar() {
                     className='dropdown_link'
                     onClick={() => setToggleDropdown(false)}
                   >
-                    Dashboard
+                    Historique
                   </Link>
-                  <Link
-                    href="/profile"
-                    className='dropdown_link flex items-center'
-                    onClick={() => setToggleDropdown(false)}
-                  >
-                    <Image
-                      src={session.user.image || "/images/default-avatar.png"}
-                      width={40}
-                      height={40}
-                      className='rounded-full'
-                      alt="Profile"
-                    />
-                  </Link>
+                  
                   <button
                     type='button'
                     onClick={() => {
@@ -136,6 +167,7 @@ function Navbar() {
                   </Link>
                 </>
               )}
+              <ThemeSwitch />
             </div>
           )}
         </div>
