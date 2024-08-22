@@ -40,7 +40,7 @@ function Navbar() {
         />
         <p className='logo_text'>INDATA</p>
       </Link>
-      <Link href='https://www.ocpgroup.ma/' target="_blank"  className='flex gap-2 flex-center'>
+      {/*<Link href='https://www.ocpgroup.ma/' target="_blank"  className='flex gap-2 flex-center'>
         <Image
           src="/images/ocplogo.jpg"
           width={100}
@@ -48,7 +48,7 @@ function Navbar() {
           className='object-contain'
           alt="OCP"
         />
-      </Link>
+      </Link>*/}
 
       {/* Desktop navigation */}
       <div className='sm:flex hidden'>
